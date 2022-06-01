@@ -1,6 +1,8 @@
 use getopts;
 use getopts::Options;
 
+const ERRNO_INVALID_ARGUMENT: i32 = 22;
+
 pub struct Args {
   pub memory_threshold: f32,
   pub command: String,
@@ -30,7 +32,7 @@ pub fn cmd_args(args: Vec<String>) -> Args {
     None => {
       eprintln!("{}", "memory threshold wasn't set");
       print_usage(opts, &args[0]);
-      std::process::exit(22)
+      std::process::exit(ERRNO_INVALID_ARGUMENT)
     }
   };
 
@@ -39,7 +41,7 @@ pub fn cmd_args(args: Vec<String>) -> Args {
     None => {
       eprintln!("Command wasn't set");
       print_usage(opts, &args[0]);
-      std::process::exit(22)
+      std::process::exit(ERRNO_INVALID_ARGUMENT)
     }
   };
 
